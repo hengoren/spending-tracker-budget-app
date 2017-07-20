@@ -25,7 +25,7 @@ export class BackandProvider {
   }
 
   public getTodos() {
-  	return this.http.get(this.api_url + '1/objects/todos?returnObject=true', {
+  	return this.http.get(this.api_url + '/1/objects/todos?returnObject=true', {
   		headers: this.authHeader()
   	})
   	.map(res => res.json())
@@ -34,7 +34,7 @@ export class BackandProvider {
   public addTodo(name: string) {
   	let data = JSON.stringify({name: name})
 
-  	return this.http.post(this.api_url + '1/objects/todos?returnObject=true', data, 
+  	return this.http.post(this.api_url + '/1/objects/todos?returnObject=true', data, 
   	{
   		headers: this.authHeader()
   	})
