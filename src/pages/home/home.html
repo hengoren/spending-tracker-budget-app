@@ -1,16 +1,28 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <p>
-    This will be the home page
-  </p>
-  <h2> Tip: </h2>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-navbar *navbar>
+  <ion-title>
+    My Todos
+  </ion-title>
+  <ion-buttons end>
+    <button (click)="createTodo()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+ 
+<ion-content class="home">
+  <ion-list>
+    <ion-item-sliding  *ngFor="#item of todos" >
+      <button ion-item (click)="todoSelected(item)">
+        <ion-item>
+          {{item.name}}
+        </ion-item>
+      </button>
+ 
+      <ion-item-options>
+        <button danger (click)="removeTodo(item.id)"><ion-icon name="trash"></ion-icon> Delete</button>
+        <button secondary (click)="removeTodo(item.id)"><ion-icon name="checkmark"></ion-icon> Done</button>
+      </ion-item-options>
+    </ion-item-sliding>
+ 
+  </ion-list>
 </ion-content>
