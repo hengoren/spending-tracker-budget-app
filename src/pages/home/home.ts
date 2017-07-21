@@ -43,13 +43,17 @@ export class HomePage {
   				placeholder: 'Description'
   			},
   			{
-  				name: 'receiver',
+  				name: 'recipient',
   				placeholder: 'Who did you make this payment to?'
   			},
   			{
   				name: 'amount',
   				placeholder: 'Enter amount in $'
-  			}
+  			},
+        {
+          name: 'category',
+          placeholder: 'Select category'
+        }
   		],
   		buttons: [
   			{
@@ -61,7 +65,7 @@ export class HomePage {
   			{
   				text:'Save',
   				handler: data => {
-  					this.saveTransaction(data.name, data.description, data.receiver, data.amount);
+  					this.saveTransaction(data.name, data.description, data.recipient, data.amount, data.category);
   				}
   			}
   		]
@@ -69,8 +73,8 @@ export class HomePage {
   	prompt.present()
   }
 
-  public saveTransaction(name: string, description: string, receiver: string, amount: number) {
-    this.backandService.addTransaction(name, description, receiver, amount).subscribe(
+  public saveTransaction(name: string, description: string, recipient: string, amount: number, category: string) {
+    this.backandService.addTransaction(name, description, recipient, amount, category).subscribe(
       data => {
         this.transactions.push(data);
       },
