@@ -15,14 +15,11 @@
   <ion-list>
     <ion-item-sliding  *ngFor="let item of transactions" >
       <button ion-item (click)="transactionSelected(item)">
-        <ion-item>
-          {{item.name}}, {{item.recipient}}, {{item.amount}}
-        </ion-item>
+          {{item.name}}, {{item.recipient}}, ${{item.amount}}
       </button>
  
       <ion-item-options>
         <button danger (click)="removeTransaction(item.id)"><ion-icon name="trash"></ion-icon> Delete</button>
-        <button secondary (click)="removeTransaction(item.id)"><ion-icon name="checkmark"></ion-icon> Done</button>
       </ion-item-options>
     </ion-item-sliding>
  

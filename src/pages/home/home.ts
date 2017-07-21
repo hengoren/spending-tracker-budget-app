@@ -36,15 +36,15 @@ export class HomePage {
   		inputs: [
   			{
   				name: 'name',
-  				placeholder: 'Name'
+  				placeholder: 'Item'
   			},
   			{
   				name: 'description',
   				placeholder: 'Description'
   			},
   			{
-  				name: 'recipient',
-  				placeholder: 'Who did you make this payment to?'
+  				name: 'payed to',
+  				placeholder: 'Recipient'
   			},
   			{
   				name: 'amount',
