@@ -9,34 +9,46 @@ import { BackandProvider } from '../../providers/backand/backand';
 })
 export class HomePage {
 
-	todos = []
+	transactions = []
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, public backandService: BackandProvider) {
-  	this.loadTodos()
+  	this.loadTransactions()
   }
 
-  private loadTodos() {
-  	this.backandService.getTodos()
+  private loadTransactions() {
+  	this.backandService.getTransactions()
   	.subscribe(
   		data => {
-  			this.todos = data.data
+  			this.transactions = data.data
   		},
   		err => this.logError(err)
   		);
   }
 
-  public todoSelected(item: {}) {
+  public transactionSelected(item: {}) {
   	console.log('selected item: ', item)
   }
 
-  public createTodo() {
+  public createTransaction() {
   	let prompt = this.alertCtrl.create({
-  		title: 'New todo',
-  		message: "What would your weakass like to acheive?",
+  		title: 'New transaction',
+  		message: "What did your weakass buy?",
   		inputs: [
   			{
   				name: 'name',
   				placeholder: 'Name'
+  			},
+  			{
+  				name: 'description',
+  				placeholder: 'Description'
+  			},
+  			{
+  				name: 'receiver',
+  				placeholder: 'Who did you make this payment to?'
+  			},
+  			{
+  				name: 'amount',
+  				placeholder: 'Enter amount in $'
   			}
   		],
   		buttons: [
@@ -49,7 +61,7 @@ export class HomePage {
   			{
   				text:'Save',
   				handler: data => {
-  					this.saveTodo(data.name);
+  					this.saveTransaction(data.name, data.description, data.receiver, data.amount);
   				}
   			}
   		]
@@ -57,19 +69,19 @@ export class HomePage {
   	prompt.present()
   }
 
-  public saveTodo(name: string) {
-    this.backandService.addTodo(name).subscribe(
+  public saveTransaction(name: string, description: string, receiver: string, amount: number) {
+    this.backandService.addTransaction(name, description, receiver, amount).subscribe(
       data => {
-        this.todos.push(data);
+        this.transactions.push(data);
       },
       err => this.logError(err)
     );
   }
 
-  public removeTodo(id: string) {
-    this.backandService.removeTodo(id).subscribe(
+  public removeTransaction(id: string) {
+    this.backandService.removeTransaction(id).subscribe(
       data => {
-        this.loadTodos();
+        this.loadTransactions();
       },
       err => this.logError(err)
     );
