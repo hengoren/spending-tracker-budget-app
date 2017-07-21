@@ -1,4 +1,5 @@
 <ion-header>
+<<<<<<< HEAD
 <ion-navbar navbar>
   <ion-title>
     My Todos
@@ -9,20 +10,30 @@
     </button>
   </ion-buttons>
 </ion-navbar>
+  <ion-navbar>
+    <ion-title>
+      My Transactions
+    </ion-title>
+    <ion-buttons>
+      <button (click)="createTransaction()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
  
 <ion-content class="home">
   <ion-list>
-    <ion-item-sliding  *ngFor="let item of todos" >
-      <button ion-item (click)="todoSelected(item)">
+    <ion-item-sliding  *ngFor="let item of transactions" >
+      <button ion-item (click)="transactionSelected(item)">
         <ion-item>
-          {{item.name}}
+          {{item.name}}, {{item.receiver}}, {{item.amount}}
         </ion-item>
       </button>
  
       <ion-item-options>
-        <button danger (click)="removeTodo(item.id)"><ion-icon name="trash"></ion-icon> Delete</button>
-        <button secondary (click)="removeTodo(item.id)"><ion-icon name="checkmark"></ion-icon> Done</button>
+        <button danger (click)="removeTransaction(item.id)"><ion-icon name="trash"></ion-icon> Delete</button>
+        <button secondary (click)="removeTransaction(item.id)"><ion-icon name="checkmark"></ion-icon> Done</button>
       </ion-item-options>
     </ion-item-sliding>
  

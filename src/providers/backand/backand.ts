@@ -24,17 +24,17 @@ export class BackandProvider {
   	return authHeader;
   }
 
-  public getTodos() {
-  	return this.http.get(this.api_url + '/1/objects/todos?returnObject=true', {
+  public getTransactions() {
+  	return this.http.get(this.api_url + '/1/objects/transactions?returnObject=true', {
   		headers: this.authHeader()
   	})
   	.map(res => res.json())
   }
 
-  public addTodo(name: string) {
-  	let data = JSON.stringify({name: name})
+  public addTransaction(name: string, description: string, receiver: string, amount: number) {
+  	let data = JSON.stringify({name: name, description: description, receiver: receiver, amount: amount})
 
-  	return this.http.post(this.api_url + '/1/objects/todos?returnObject=true', data, 
+  	return this.http.post(this.api_url + '/1/objects/transactions?returnObject=true', data, 
   	{
   		headers: this.authHeader()
   	})
@@ -43,8 +43,8 @@ export class BackandProvider {
   	});
   }
 
-  public removeTodo(id: string) {
-    return this.http.delete(this.api_url + '/1/objects/todos/' + id,
+  public removeTransaction(id: string) {
+    return this.http.delete(this.api_url + '/1/objects/transactions/' + id,
     {
       headers: this.authHeader()
     })
