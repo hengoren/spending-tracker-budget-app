@@ -1,3 +1,32 @@
-page-budget {
+.ios, .md {
+	page-budget {
+		.scroll-content {
+	        background-color: map-get($colors, light);
+	    }
 
+	    ion-card-header {
+	        font-weight: bold;
+	    }
+		.wrapper {
+		  position: relative;
+		}
+
+		.wrapper h1 {
+		  bottom: 30%;
+		  align: center;
+		  color: white;
+		  font-size: 2em;
+		  
+		  color: black;
+		  left: 0;
+		  padding: 0em;
+		  position: absolute;
+		}
+
+
+
+
+
+
+	}
 }
