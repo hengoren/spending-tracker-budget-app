@@ -13,6 +13,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, public backandService: BackandProvider) {
   	this.loadTransactions()
+    console.log(this.transactions)
   }
 
   private loadTransactions() {
@@ -23,7 +24,7 @@ export class HomePage {
   		},
   		err => this.logError(err)
   		);
-  }
+  };
 
   public transactionSelected(item: {}) {
   	console.log('selected item: ', item)
@@ -35,7 +36,7 @@ export class HomePage {
   		message: "What did your weakass buy?",
   		inputs: [
   			{
-  				name: 'name',
+  				name: 'expense',
   				placeholder: 'Item'
   			},
   			{
@@ -65,7 +66,7 @@ export class HomePage {
   			{
   				text:'Save',
   				handler: data => {
-  					this.saveTransaction(data.name, data.description, data.recipient, data.amount, data.category);
+  					this.saveTransaction(data.expense, data.description, data.recipient, data.amount, data.category);
   				}
   			}
   		]
@@ -73,8 +74,8 @@ export class HomePage {
   	prompt.present()
   }
 
-  public saveTransaction(name: string, description: string, recipient: string, amount: number, category: string) {
-    this.backandService.addTransaction(name, description, recipient, amount, category).subscribe(
+  public saveTransaction(expense: string, description: string, recipient: string, amount: number, category: string) {
+    this.backandService.addTransaction(expense, description, recipient, amount, category).subscribe(
       data => {
         this.transactions.push(data);
       },

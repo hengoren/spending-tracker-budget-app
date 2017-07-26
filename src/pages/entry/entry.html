@@ -14,5 +14,66 @@
 
 
 <ion-content padding>
-	Put Entry Form Here
+	Put Entry Form Here pepe
+
+	<p *ngIf="submitAttempt"> Please fill it out </p>
+
+	<ion-list no-lines>
+	  <form [formGroup]="form">
+	    <ion-item>
+	      <ion-label floating> Item </ion-label>
+	      <ion-input formControlName="item" type="text" [class.invalid]="!form.controls.item.valid && (form.controls.item.dirty || submitAttempt)"></ion-input>
+	    </ion-item>
+
+	    <ion-item *ngIf="!form.controls.item.valid  && (form.controls.item.dirty || submitAttempt)">
+                <p>Please enter a valid item.</p>
+        </ion-item>
+
+	    <ion-item>
+	      <ion-label floating> Description </ion-label>
+	      <ion-input formControlName="description" type="text" [class.invalid]="!form.controls.description.valid && (form.controls.description.dirty || submitAttempt)"></ion-input>
+	    </ion-item>
+
+	    <ion-item *ngIf="!form.controls.item.valid  && (form.controls.item.dirty || submitAttempt)">
+                <p>Please enter a description.</p>
+        </ion-item>
+
+        <ion-item>
+	      <ion-label floating> Recipient </ion-label>
+	      <ion-input formControlName="recipient" type="text" [class.invalid]="!form.controls.recipient.valid && (form.controls.recipient.dirty || submitAttempt)"></ion-input>
+	    </ion-item>
+
+	    <ion-item *ngIf="!form.controls.recipient.valid  && (form.controls.recipient.dirty || submitAttempt)">
+                <p>Please enter a recipient.</p>
+        </ion-item>
+
+	    <ion-item>
+	      <ion-label floating> Amount </ion-label>
+	      <ion-input formControlName="amount" type="number"  [class.invalid]="!form.controls.amount.valid && (form.controls.amount.dirty || submitAttempt)"></ion-input>
+	    </ion-item>
+
+	    <ion-item *ngIf="!form.controls.amount.valid  && (form.controls.amount.dirty || submitAttempt)">
+                <p>Please enter an amount.</p>
+        </ion-item>
+
+	    <ion-item>
+	      <ion-label floating> Category </ion-label>
+	      <ion-select formControlName="category">
+	        <ion-option> Option 1 </ion-option>
+	        <ion-option> Option 2 </ion-option>
+	        <ion-option> Option 3 </ion-option>
+	        <ion-option> Option 4 </ion-option>
+	        <ion-option> Option 5 </ion-option>
+	        <ion-option> Option 6 </ion-option>
+	      </ion-select>
+	      </ion-item>
+
+
+
+	    </form>
+	    </ion-list>
+
+	    <button ion-button full color="primary" (click)="addTransaction()"> Add </button>
+
+
 </ion-content>

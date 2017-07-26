@@ -31,8 +31,8 @@ export class BackandProvider {
   	.map(res => res.json())
   }
 
-  public addTransaction(name: string, description: string, recipient: string, amount: number, category: string) {
-  	let data = JSON.stringify({name: name, description: description, recipient: recipient, amount: amount, category: category})
+  public addTransaction(expense: string, description: string, recipient: string, amount: number, category: string) {
+  	let data = JSON.stringify({expense: expense, description: description, recipient: recipient, amount: amount, category: category})
 
   	return this.http.post(this.api_url + '/1/objects/transaction?returnObject=true', data, 
   	{

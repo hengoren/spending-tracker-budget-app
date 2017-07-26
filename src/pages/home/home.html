@@ -15,7 +15,7 @@
   <ion-list>
     <ion-item-sliding  *ngFor="let item of transactions" >
       <button ion-item (click)="transactionSelected(item)">
-          {{item.name}}, {{item.recipient}}, ${{item.amount}}
+          {{item.expense}}, {{item.recipient}}, ${{item.amount}}
       </button>
  
       <ion-item-options>
