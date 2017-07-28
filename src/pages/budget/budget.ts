@@ -27,6 +27,39 @@ export class BudgetPage {
   transactions = []
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public backandService: BackandProvider) {
+<<<<<<< HEAD
+  	//this.createTotalExpenseDict()
+  	
+  }
+
+  // private loadTransactions() {
+  // 	this.backandService.getTransactions()
+  // 	.subscribe(
+  // 		data => {
+  // 			console.log(data.data);
+  // 			this.transactions = data.data;
+  // 		},
+  // 		err => this.logError(err)
+  // 		);
+  // }
+
+  private loadTransactions(callback) {
+  	// dictionary for storing total expenses by category
+
+  	this.backandService.getTransactions()
+  	.subscribe(data => {
+  		// populate array with all transactions
+  		this.transactions = data.data;
+	  	var transactionDict = callback(this.transactions);
+	  	var labelArr = Object.keys(transactionDict);
+	  	var dataArr = [];
+
+	  	for (var i = 0; i < labelArr.length; i++) {
+	  		dataArr[i] = transactionDict[labelArr[i]];
+	  	}
+	  	this.makeCharts(labelArr, dataArr);
+	  });
+=======
   	this.loadTransactions()
   	this.createTotalExpenseDict()
   }
@@ -58,11 +91,46 @@ export class BudgetPage {
   		}
   	}
   	console.log(totalExpenseDict)
+>>>>>>> 85be228a2ad2e75daf270abd934a7092c61ccd5d
   }
 
   public logError(err: TemplateStringsArray) {
     console.error('Error: ' + err);
   }
+<<<<<<< HEAD
+
+  // public getCategories(transactions) {
+  // 	let totalExpenseDict = {};
+  // 	for (var i = 0; i < transactions.length; i++) {
+	 //  		if (transactions[i].category in totalExpenseDict) {
+	 //  			totalExpenseDict[transactions[i].category] = totalExpenseDict[transactions[i].category] + transactions[i].amount;
+	 //  		}
+	 //  		else {
+	 //  			totalExpenseDict[transactions[i].category] = transactions[i].amount;
+	 //  		}
+	 // }
+	 // console.log(totalExpenseDict)
+  // }
+
+  ionViewDidLoad() {
+  	this.loadTransactions(transactions => {
+  		let totalExpenseDict = {};
+	  	for (var i = 0; i < transactions.length; i++) {
+		  		if (transactions[i].category in totalExpenseDict) {
+		  			totalExpenseDict[transactions[i].category] = totalExpenseDict[transactions[i].category] + transactions[i].amount;
+		  		}
+		  		else {
+		  			totalExpenseDict[transactions[i].category] = transactions[i].amount;
+		  		}
+		 }
+		console.log(totalExpenseDict)
+  		return totalExpenseDict;
+  	
+  	});
+  }
+  public makeCharts(labelArr, dataArr) {
+  	this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+=======
   ionViewDidLoad() {
     console.log('ionViewDidLoad BudgetPage');
 
@@ -70,12 +138,13 @@ export class BudgetPage {
 
     
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+>>>>>>> 85be228a2ad2e75daf270abd934a7092c61ccd5d
         type: 'doughnut',
         data: {
-            labels: ["Entertainment", "Food", "Groceries", "Gas", "Alc/Drugs", "Misc."],
+            labels: labelArr,
             datasets: [{
                 label: '# of Votes',
-                data: [4, 3, 4, 4, 30, 3],
+                data: dataArr,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -164,6 +233,5 @@ export class BudgetPage {
             ]
         }
     });
-  }
-
+   }s
 }
