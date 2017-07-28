@@ -27,7 +27,6 @@ export class BudgetPage {
   transactions = []
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public backandService: BackandProvider) {
-<<<<<<< HEAD
   	//this.createTotalExpenseDict()
   	
   }
@@ -59,45 +58,11 @@ export class BudgetPage {
 	  	}
 	  	this.makeCharts(labelArr, dataArr);
 	  });
-=======
-  	this.loadTransactions()
-  	this.createTotalExpenseDict()
-  }
-
-  private loadTransactions() {
-  	this.backandService.getTransactions()
-  	.subscribe(
-  		data => {
-  			this.transactions = data.data
-  		},
-  		err => this.logError(err)
-  		);
-  }
-
-  private createTotalExpenseDict() {
-  	// dictionary for storing total expenses by category
-  	var totalExpenseDict = {};
-  	// check to see that array is populated
-  	console.log(this.transactions)
-
-  	// this stuff doesnt matter yet 
-  	for (var i = 0; i < this.transactions.length; i++) {
-  		console.log(this.transactions[i].expense)
-  		if (this.transactions[i].category in totalExpenseDict) {
-  			totalExpenseDict[this.transactions[i].category] = totalExpenseDict[this.transactions[i].category] + this.transactions[i].amount;
-  		}
-  		else {
-  			totalExpenseDict[this.transactions[i].category] = this.transactions[i].amount;
-  		}
-  	}
-  	console.log(totalExpenseDict)
->>>>>>> 85be228a2ad2e75daf270abd934a7092c61ccd5d
   }
 
   public logError(err: TemplateStringsArray) {
     console.error('Error: ' + err);
   }
-<<<<<<< HEAD
 
   // public getCategories(transactions) {
   // 	let totalExpenseDict = {};
@@ -130,15 +95,6 @@ export class BudgetPage {
   }
   public makeCharts(labelArr, dataArr) {
   	this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-=======
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BudgetPage');
-
-
-
-    
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
->>>>>>> 85be228a2ad2e75daf270abd934a7092c61ccd5d
         type: 'doughnut',
         data: {
             labels: labelArr,
