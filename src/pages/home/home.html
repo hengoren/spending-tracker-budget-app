@@ -1,21 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      My Transactions
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="createTransaction()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+  <ion-navbar>
+    <ion-title>
+      My Transactions
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="createTransaction()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
  
 <ion-content class="home">
   <ion-list>
     <ion-item-sliding  *ngFor="let item of transactions" >
       <button ion-item (click)="transactionSelected(item)">
-          {{item.name}}, {{item.recipient}}, ${{item.amount}}
+          {{item.expense}}, {{item.recipient}}, ${{item.amount}}
       </button>
  
       <ion-item-options>
