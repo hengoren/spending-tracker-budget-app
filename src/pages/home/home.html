@@ -3,19 +3,43 @@
     <ion-title>
       My Transactions
     </ion-title>
+    <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
     <ion-buttons end>
       <button ion-button icon-only (click)="createTransaction()">
         <ion-icon name="add"></ion-icon>
       </button>
+
     </ion-buttons>
   </ion-navbar>
 </ion-header>
  
 <ion-content class="home">
   <ion-list>
-    <ion-item-sliding  *ngFor="let item of transactions" >
-      <button ion-item (click)="transactionSelected(item)">
-          {{item.expense}}, {{item.recipient}}, ${{item.amount}}
+    <!-- <ion-item-sliding  *ngFor="let item of transactions | search: terms | sort: { property: date, order: order}" > -->
+      <ion-item-sliding  *ngFor="let item of transactions | search: terms " >
+      <button ion-item (click)="transactionSelected(item)" style="color: black">
+          
+          <h1> {{item.expense}} </h1>
+          <h2> £{{item.amount}} • {{item.recipient}}</h2> 
+          <p> {{item.description}} </p> 
+          <p> {{item?.createdAt | date:"MMM d, yyyy"}} </p>
+
+          <!-- Recreation -->
+          <ion-icon *ngIf = "item.category == 'Recreation'" item-right name="beer"> </ion-icon>
+           <!-- Luxury -->
+           <ion-icon *ngIf = "item.category == 'Luxury'" item-right name="cash"> </ion-icon>
+
+           <!-- Transportation -->
+           <ion-icon *ngIf = "item.category == 'Transportation'" item-right name="car"> </ion-icon>
+
+           <!-- Groceries -->
+           <ion-icon *ngIf = "item.category == 'Groceries'" item-right name="cart"> </ion-icon>
+
+           <!-- Food -->
+           <ion-icon *ngIf = "item.category == 'Food'" item-right name="pizza"> </ion-icon>
+
+           <!-- Miscellaneous -->
+           <ion-icon *ngIf = "item.category == 'Miscellaneous'" item-right name="help"> </ion-icon>
       </button>
  
       <ion-item-options>

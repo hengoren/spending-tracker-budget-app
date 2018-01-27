@@ -10,6 +10,9 @@ import { BackandProvider } from '../../providers/backand/backand';
 export class HomePage {
 
 	transactions = []
+  descending: boolean = false;
+  order: number;
+  date: String = 'createdAt'
 
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, public backandService: BackandProvider) {
   	this.loadTransactions()
@@ -27,13 +30,28 @@ export class HomePage {
   };
 
   public transactionSelected(item: {}) {
+    let prompt = this.alertCtrl.create({
+      title: 'Edit Transaction & Transaction Details',
+      message: "You paid " + item['recipient'] + " £" + item['amount'] + " for " + item['expense'],
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    })
+    prompt.present()
   	console.log('selected item: ', item)
+    // console.log('amount: £', item
+
   }
 
   public createTransaction() {
   	let prompt = this.alertCtrl.create({
   		title: 'New transaction',
-  		message: "What did your weakass buy?",
+  		message: "What did you buy?",
   		inputs: [
   			{
   				name: 'expense',
@@ -44,7 +62,7 @@ export class HomePage {
   				placeholder: 'Description'
   			},
   			{
-  				name: 'payed to',
+  				name: 'recipient',
   				placeholder: 'Recipient'
   			},
   			{
@@ -53,7 +71,7 @@ export class HomePage {
   			},
         {
           name: 'category',
-          placeholder: 'Select category'
+          placeholder: 'Select category (Luxury, Transportation, Groceries, Recreation, Food, Miscellaneous)'
         }
   		],
   		buttons: [
@@ -94,6 +112,15 @@ export class HomePage {
  
   public logError(err: TemplateStringsArray) {
     console.error('Error: ' + err);
+  }
+
+  ionViewDidLoad() {
+    this.loadTransactions()
+  }
+
+  sort() {
+    this.descending = !this.descending;
+    this.order = this.descending ? 1 : -1;
   }
 
 }

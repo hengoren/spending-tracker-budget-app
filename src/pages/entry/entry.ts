@@ -34,7 +34,7 @@ export class EntryPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EntryPage');
+    
   }
 
   addTransaction() {
@@ -54,6 +54,9 @@ export class EntryPage {
       },
       err => this.logError(err)
     );
+      this.submitAttempt = false
+      this.form.reset()
+
     }
 
   }

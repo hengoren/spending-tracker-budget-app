@@ -25,10 +25,14 @@ export class BackandProvider {
   }
 
   public getTransactions() {
-  	return this.http.get(this.api_url + '/1/objects/transaction?returnObject=true', {
+  	return this.http.get(this.api_url + '/1/objects/transaction?returnObject=true&pageSize=100', {
   		headers: this.authHeader()
   	})
   	.map(res => res.json())
+  }
+
+  public getTransaction(id: number) {
+    return this.http.get(this.api_url + '1/objects/transaction/' + id)
   }
 
   public addTransaction(expense: string, description: string, recipient: string, amount: number, category: string) {

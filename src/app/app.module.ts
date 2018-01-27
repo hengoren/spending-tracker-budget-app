@@ -12,6 +12,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BackandProvider } from '../providers/backand/backand';
+import { SearchPipe } from '../pipes/search/search';
+import { SortPipe } from '../pipes/sort/sort';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { BackandProvider } from '../providers/backand/backand';
     HomePage,
     EntryPage,
     BudgetPage,
-    TabsPage
+    TabsPage,
+    SearchPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
